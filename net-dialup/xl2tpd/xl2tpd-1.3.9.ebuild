@@ -1,7 +1,7 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
 inherit eutils systemd toolchain-funcs
 
@@ -11,7 +11,7 @@ SRC_URI="https://github.com/xelerance/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~mips ~ppc ppc64 ~x86"
+KEYWORDS="amd64 ~arm ~mips ~ppc ~ppc64 x86"
 IUSE="dnsretry"
 
 DEPEND="net-libs/libpcap"
@@ -21,9 +21,9 @@ DEPEND+=" >=sys-kernel/linux-headers-2.6.23"
 
 src_prepare() {
 	sed -i Makefile -e 's| -O2||g' || die "sed Makefile"
-	# The below patch is questionable. Why wasn't it submitted upstream? If it
-	# ever breaks, it will just be removed. -darkside 20120914
-	use dnsretry && epatch "${FILESDIR}/${PN}-dnsretry.patch"
+	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 20.07.2017
+	use dnsretry && eapply -p0 "${FILESDIR}/${PN}-dnsretry.patch"
+	eapply_user
 }
 
 src_compile() {
