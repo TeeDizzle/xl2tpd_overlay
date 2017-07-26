@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<!-- maintainer-needed -->
+	<maintainer type="person">
+    	<email>tee@itc-gmbh.de</email>
+    	<name>Torsten Alex</name>
+  	</maintainer>
+	<longdescription>The Layer 2 Tunneling Protocol (L2TP) daemon mantained by Xelerance Corporation.</longdescription>
+	<use>
+		<flag name="dnsretry">Patch for host lookup retries, activated by redial feature</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">xelerance/xl2tpd</remote-id>
+	</upstream>
+</pkgmetadata>
