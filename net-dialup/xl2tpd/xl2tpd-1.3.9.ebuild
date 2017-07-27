@@ -20,7 +20,6 @@ RDEPEND="${DEPEND}
 DEPEND+=" >=sys-kernel/linux-headers-2.6.23"
 
 src_prepare() {
-	sed -i Makefile -e 's| -O2||g' || die "sed Makefile"
 	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 20.07.2017
 	use dnsretry && eapply -p0 "${FILESDIR}/${PN}-dnsretry.patch"
 	eapply_user
