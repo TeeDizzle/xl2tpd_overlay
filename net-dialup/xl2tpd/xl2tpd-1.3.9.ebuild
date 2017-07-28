@@ -18,6 +18,7 @@ DEPEND="net-libs/libpcap"
 RDEPEND="${DEPEND}
 	net-dialup/ppp"
 DEPEND+=" >=sys-kernel/linux-headers-2.6.23"
+DOCS="CREDITS README.xl2tpd BUGS CHANGES TODO doc/README.patents"
 
 src_prepare() {
 	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 20.07.2017
@@ -32,12 +33,16 @@ src_compile() {
 
 src_install() {
 	emake PREFIX=/usr DESTDIR="${D}" install
-	dodoc CREDITS README.xl2tpd BUGS CHANGES TODO doc/README.patents
+
 	insinto /etc/xl2tpd
 	newins doc/l2tpd.conf.sample xl2tpd.conf
 	newins doc/l2tp-secrets.sample l2tp-secrets
 	fperms 0600 /etc/xl2tpd/l2tp-secrets
+
 	newinitd "${FILESDIR}"/xl2tpd-init-r1 xl2tpd
+
 	systemd_dounit "${FILESDIR}"/xl2tpd.service
 	systemd_dotmpfilesd "${FILESDIR}"/xl2tpd.conf
+
+	einstalldocs
 }
