@@ -21,7 +21,7 @@ DEPEND+=" >=sys-kernel/linux-headers-2.6.23"
 DOCS="CREDITS README.xl2tpd BUGS CHANGES TODO doc/README.patents"
 
 src_prepare() {
-	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 20.07.2017
+	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 2017-07-20
 	use dnsretry && eapply -p0 "${FILESDIR}/${PN}-dnsretry.patch"
 	eapply_user
 }
