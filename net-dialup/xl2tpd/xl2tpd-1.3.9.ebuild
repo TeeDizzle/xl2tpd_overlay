@@ -21,7 +21,10 @@ DEPEND+=" >=sys-kernel/linux-headers-2.6.23"
 DOCS="CREDITS README.xl2tpd BUGS CHANGES TODO doc/README.patents"
 
 src_prepare() {
-	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 2017-07-20
+	# The below patch is questionable. Why wasn't it submitted upstream? If it
+	# ever breaks, it will just be removed. -darkside 20120914
+	# Patch has been discussed with upstream and is marked as feature by now:
+	# https://github.com/xelerance/xl2tpd/issues/134 // -- tenX 2017-08-06
 	use dnsretry && eapply -p0 "${FILESDIR}/${PN}-dnsretry.patch"
 	eapply_user
 }
